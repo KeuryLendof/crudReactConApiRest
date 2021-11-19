@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import axios from 'axios'
 import Cookies from 'universal-cookie'
 import '../App.css'
+import logo from './img/login.svg'
 
 const baseUrl = "http://localhost:3001/administradores";
 const cookies = new Cookies();
@@ -37,7 +38,7 @@ class Login extends Component {
                 cookies.set('username', respuesta.username, {path: "/"})
                 cookies.set('password', respuesta.password, {path: "/"})
                 alert(`Bienvenido ${respuesta.username}`)
-                window.location.href="./vacaciones";
+                window.location.href="/inicio";
 
             }else{
                 alert("Usuario o contrasena incorrecto")
@@ -49,30 +50,22 @@ class Login extends Component {
 
         return(
             <div className="login">
-                <div className="center">
-                    <h1>Login</h1>
-                    <form>
-                        <div className="txt_field">
-                            <input
-                            type="text"
-                            name="username"
-                            onChange={this.handleChange}
-                            required />
-                            <label>Username</label>
-                        </div>
-                        <div className="txt_field">
-                            <input
-                            type="password"
-                            name="password"
-                            onChange={this.handleChange}
-                            required  />
-                            <label>Password</label>
-                        </div>
-                        <button className="enviar" onClick={()=> this.iniciarSesion()}>Login</button>
-                    </form>
-               </div>
+
+                <div className="login-container">
+                    <div className="login-info-container">
+                        <br /><br /><br /><br />
+                        <h1 className="title">Log in with</h1>
+                        <br />
+                        <form className="inputs-container">
+                            <input className="input" type="text" placeholder="Username" name="username" onChange={this.handleChange}/>
+                            <input className="input" type="password" placeholder="Password" name="password" onChange={this.handleChange}/>
+                            <button className="btnl" onClick={()=> this.iniciarSesion()}>login</button>
+                        </form>
+                    </div>
+                    <img className="image-container" src={logo}/>
+                </div>
+
             </div>
-            
         );
 
     }

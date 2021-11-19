@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-import './principal.css'
+import '../App.css';
 
 const url ="http://localhost:3001/empleados/";
 
@@ -105,10 +105,10 @@ class Principal extends Component{
     return(
 
       <div>
-        
+
+        <br />
         <div className="App container">
       
-          <br />
           <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Empleado</button>
           <br /><br />
           <div className="table-responsive">
