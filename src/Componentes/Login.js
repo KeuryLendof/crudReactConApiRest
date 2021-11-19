@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import axios from 'axios'
 import Cookies from 'universal-cookie'
-import './login.css';
-
+import '../App.css'
 
 const baseUrl = "http://localhost:3001/administradores";
 const cookies = new Cookies();
@@ -38,7 +37,7 @@ class Login extends Component {
                 cookies.set('username', respuesta.username, {path: "/"})
                 cookies.set('password', respuesta.password, {path: "/"})
                 alert(`Bienvenido ${respuesta.username}`)
-                window.location.href="./principal";
+                window.location.href="./vacaciones";
 
             }else{
                 alert("Usuario o contrasena incorrecto")
@@ -49,28 +48,31 @@ class Login extends Component {
     render(){
 
         return(
-            <div className="center">
-                <h1>Login</h1>
-                <form>
-                    <div className="txt_field">
-                        <input
-                         type="text"
-                         name="username"
-                         onChange={this.handleChange}
-                         required />
-                        <label>Username</label>
-                    </div>
-                    <div className="txt_field">
-                        <input
-                         type="password"
-                         name="password"
-                         onChange={this.handleChange}
-                         required  />
-                        <label>Password</label>
-                    </div>
-                    <button className="enviar" onClick={()=> this.iniciarSesion()}>Login</button>
-                </form>
+            <div className="login">
+                <div className="center">
+                    <h1>Login</h1>
+                    <form>
+                        <div className="txt_field">
+                            <input
+                            type="text"
+                            name="username"
+                            onChange={this.handleChange}
+                            required />
+                            <label>Username</label>
+                        </div>
+                        <div className="txt_field">
+                            <input
+                            type="password"
+                            name="password"
+                            onChange={this.handleChange}
+                            required  />
+                            <label>Password</label>
+                        </div>
+                        <button className="enviar" onClick={()=> this.iniciarSesion()}>Login</button>
+                    </form>
+               </div>
             </div>
+            
         );
 
     }

@@ -2,6 +2,7 @@ import React from "react";
 import {Routes, Route} from 'react-router-dom';
 import Login from "./Componentes/Login";
 import Principal from './Componentes/Principal'
+import Vacaciones from "./Componentes/Vacaciones";
 
 
 function App(){
@@ -10,7 +11,8 @@ function App(){
 
     <Routes>
       <Route path="/" exact element={<Login/>}/>
-      <Route path="/Principal" exact element={<Principal />}/>
+      <Route path="/vacaciones" exact element={<Vacaciones />}/>
+      {/* <Route path="/Principal" exact element={<Principal />}/> */}
     </Routes>
 
   );
