@@ -6,7 +6,7 @@
   --title-bg: #6c63ff;
   --button-bg: #6c63ff;
   --light-pink: #6c63ff;
-  --image-bg:  #eadbff ;
+  --image-bg:  #eadbff;
 }
 
 
@@ -165,6 +165,30 @@
   }
 }
 
+table{
+  background-color: white;
+  text-align: left;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, tbody td{
+  padding: 12px;
+}
+
+thead{
+  background-color: #6c63ff;
+  color: white;
+}
+
+tr:nth-child(even){
+  background-color: #ddd;
+}
+
+tr:hover td{
+  background-color: #369681;
+  color: white;
+}
 
 
 .formCalendario{
@@ -200,7 +224,7 @@ header{
   padding: 0;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+  background: #eadbff;
 }
 
 .inicio{

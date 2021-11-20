@@ -109,10 +109,10 @@ class Principal extends Component{
         <br />
         <div className="App container">
       
-          <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Empleado</button>
+          <button className="btn btn-primary btn-lg" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Empleado</button>
           <br /><br />
           <div className="table-responsive">
-            <table className="table table-hover">
+            <table className="">
               <thead>
                 <tr>
                   <th>Id</th>
