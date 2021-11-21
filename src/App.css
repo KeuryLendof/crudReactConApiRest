@@ -118,6 +118,10 @@
   cursor: pointer;
 }
 
+.btnl:hover{
+  border: 2px solid #1f0469;
+}
+
 .inputs-container p {
   margin: 0;
 }
@@ -311,6 +315,9 @@ header{
   border-radius: 5px;
   background-color: #0800a8;
   cursor: pointer;
+}
+.btnv:hover{
+  border: 2px solid var(--button-bg);
 }
 
 .titlev {

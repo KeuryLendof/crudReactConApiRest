@@ -24,15 +24,15 @@ const localizer = dateFnsLocalizer({
 
 const events = [
     {
-        title: "Big Meeting",
+        title: "Marlon",
         allDay: true,
-        start: new Date(11, 13, 2021),
-        end: new Date(11, 19, 2021),
+        start: new Date(2021, 10, 1),
+        end: new Date(2021, 10, 6),
     },
     {
-        title: "Vacation",
-        start: new Date(2021, 11, 7),
-        end: new Date(2021, 11, 10),
+        title: "keury",
+        start: new Date(2021, 10, 7),
+        end: new Date(2021, 10, 10),
     },
     {
         title: "Conference",
@@ -40,6 +40,8 @@ const events = [
         end: new Date(2021, 6, 23),
     }
 ];
+
+
 
 function Vacaciones() {
     const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
@@ -61,7 +63,7 @@ function Vacaciones() {
                     <h1 className="titlev">Asignar Vacaciones</h1>
                     <br />
                     <select className="input" value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}>
-                        <option>Seleccione Persona</option>
+                        <option selected>Seleccione Persona</option>
                         <option value="Marlon">Marlon</option>
                         <option value="Keury">Keury</option>
                         <option value="Estrella">Estrella</option>

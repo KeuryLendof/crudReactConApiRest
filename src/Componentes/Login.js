@@ -37,7 +37,6 @@ class Login extends Component {
                 cookies.set('id', respuesta.id, {path: "/"})
                 cookies.set('username', respuesta.username, {path: "/"})
                 cookies.set('password', respuesta.password, {path: "/"})
-                alert(`Bienvenido ${respuesta.username}`)
                 window.location.href="/inicio";
 
             }else{

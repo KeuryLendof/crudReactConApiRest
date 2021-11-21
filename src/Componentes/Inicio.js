@@ -18,14 +18,14 @@ const Inicio=()=>{
                 <div className="card">
                     <img src={Img}/>
                     <h4>Empleados</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, excepturi unde?</p>
+                    <p>Modulo de empleados para crear nuevos empleados en la empresa</p>
                     <a href="/principal">Crear</a>
                 </div>
                 
                 <div className="card">
                     <img src={Img2}/>
                     <h4>Vacaciones</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, excepturi unde?</p>
+                    <p>Modulo de vacaciones para que los empleados puedan solicitar sus vacaciones</p>
                     <a href="/vacaciones">Asignar</a>
                 </div>
                 
