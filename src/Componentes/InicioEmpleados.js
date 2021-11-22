@@ -19,14 +19,14 @@ const InicioEmpleados=()=>{
                     <img src={Img}/>
                     <h4>Solicitar Vacaciones</h4>
                     <p>Modulo para solicitar sus vacaciones y luego ser verificadas</p>
-                    <a href="/vacaciones">Solicitar</a>
+                    <a href="/solicitarVacaciones">Solicitar</a>
                 </div>
                 
                 <div className="card">
                     <img src={Img2}/>
                     <h4>Ver mi nomina</h4>
                     <p>Modulo de nomina para ver su salario primario y neto</p>
-                    <a href="/nomina">Revisar</a>
+                    <a href="/nomina">Ver</a>
                 </div>
             
             </div>
