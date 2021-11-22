@@ -37,7 +37,7 @@ class Login extends Component {
                 cookies.set('id', respuesta.id, {path: "/"})
                 cookies.set('username', respuesta.username, {path: "/"})
                 cookies.set('password', respuesta.password, {path: "/"})
-                window.location.href="/inicio";
+                window.location.href="/inicioEmpleados";
 
             }else{
                 alert("Usuario o contrasena incorrecto")
