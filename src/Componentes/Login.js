@@ -37,7 +37,7 @@ class Login extends Component {
                 cookies.set('id', respuesta.id, {path: "/"})
                 cookies.set('username', respuesta.username, {path: "/"})
                 cookies.set('password', respuesta.password, {path: "/"})
-                window.location.href="/inicioEmpleados";
+                window.location.href="/inicio";
 
             }else{
                 alert("Usuario o contrasena incorrecto")
@@ -58,6 +58,8 @@ class Login extends Component {
                         <form className="inputs-container">
                             <input className="input" type="text" placeholder="Username" name="username" onChange={this.handleChange}/>
                             <input className="input" type="password" placeholder="Password" name="password" onChange={this.handleChange}/>
+                            {/* <input type="tel" name="telField" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="--" required/>
+                            <input type="datetime-local" name="dtlPicker"/> */}
                             <button className="btnl" onClick={()=> this.iniciarSesion()}>login</button>
                         </form>
                     </div>

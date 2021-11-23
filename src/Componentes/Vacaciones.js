@@ -1,85 +1,52 @@
-import format from "date-fns/format";
-import getDay from "date-fns/getDay";
-import parse from "date-fns/parse";
-import startOfWeek from "date-fns/startOfWeek";
-import React, { useState } from "react";
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../App.css";
-import logo from './img/calendar.svg'
+import React from "react";
+import '../App.css';
 
-const locales = {
-    "en-US": require("date-fns/locale/en-US"),
-};
-const localizer = dateFnsLocalizer({
-    format,
-    parse,
-    startOfWeek,
-    getDay,
-    locales,
-});
 
-const events = [
-    {
-        title: "Marlon",
-        allDay: true,
-        start: new Date(2021, 10, 1),
-        end: new Date(2021, 10, 6),
-    },
-    {
-        title: "keury",
-        start: new Date(2021, 10, 7),
-        end: new Date(2021, 10, 10),
-    },
-    {
-        title: "Conference",
-        start: new Date(2021, 6, 20),
-        end: new Date(2021, 6, 23),
-    }
-];
+function Vacaciones(){
 
 
 
-function Vacaciones() {
-    const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
-    const [allEvents, setAllEvents] = useState(events);
-
-    function handleAddEvent() {
-        setAllEvents([...allEvents, newEvent]);
-    }
-
-    return (
-        <div className="App">
-            {/* <header>
-                <h1>Calendario</h1>
-            </header> */}
-
-            <div className="calendar-container">
-                <div className="calendar-info-container">
-                    <br/>
-                    <h1 className="titlev">Asignar Vacaciones</h1>
-                    <br />
-                    <select className="input" value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}>
-                        <option selected>Seleccione Persona</option>
-                        <option value="Marlon">Marlon</option>
-                        <option value="Keury">Keury</option>
-                        <option value="Estrella">Estrella</option>
-                        <option value="Abel">Abel</option>
-                    </select>
-                    <form className="inputs-container">
-                        <DatePicker className="input" placeholderText="Start Date" selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })}/>
-                        <DatePicker className="input" placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })}/>
-                        <button type="button" className="btnv" onClick={handleAddEvent}>Asignar</button>
-                    </form>
+    return(
+        <div className="revisarVacaciones">
+            <section class="body-chat">
+                <div class="seccion-titulo">
+                    <h3>
+                        <i class="fas fa-comments"></i>
+                        Solicitudes de vacaciones
+                    </h3>
                 </div>
-                <img className="calendar-image-container" src={logo}/>
-            </div>
-            <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} />
+                <div class="panel-chat">
+                    <div class="mensaje">
+                        <div class="avatar">
+                            <img src="ruta_img" alt="img"/>
+                        </div>
+                        <div class="cuerpo">
+                            <div class="texto">
+                                Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Dolor eligendi voluptatum dolore voluptas iure.
+                                <span class="tiempo">
+                                    <i class="far fa-clock"></i>
+                                    Hace 5 min
+                                </span>
+                            </div>
+                            <ul class="opciones-msj">
+                                <li>
+                                    <button type="button">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button">
+                                        <i class="fas fa-share-square"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    );
+    )
 }
+
 
 export default Vacaciones;
