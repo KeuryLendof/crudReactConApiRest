@@ -628,7 +628,7 @@ header{
   background-color: #EEEEEE;
   border-radius: 8px;
   position: relative;
-  width: calc(100% - 35px - 1rem - 5rem);
+  width: 500px;
 }
 .mensaje .cuerpo::before {
   content: '';
