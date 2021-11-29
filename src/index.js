@@ -4,6 +4,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom'
 
+
+export default function prueba(){
+  
+
+  let nombre = "keury lendof";
+
+  const crear = document.getElementById("texto")
+
+  const h1 = document.createElement("h5")
+
+  h1.textContent = nombre;
+
+  crear.appendChild(h1);
+  
+}
+
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>

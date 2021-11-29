@@ -1,10 +1,8 @@
 import React from "react";
 import '../App.css';
-
+import prueba from "..";
 
 function Vacaciones(){
-
-
 
     return(
         <div className="revisarVacaciones">
@@ -14,6 +12,7 @@ function Vacaciones(){
                         <i class="fas fa-comments"></i>
                         Solicitudes de vacaciones
                     </h3>
+                    <button onClick={prueba}>Ver Solicitudes</button>
                 </div>
                 <div class="panel-chat">
                     <div class="mensaje">
@@ -21,7 +20,7 @@ function Vacaciones(){
                             <img src="ruta_img" alt="img"/>
                         </div>
                         <div class="cuerpo">
-                            <div class="texto">
+                            <div id="texto" class="texto">
                                 Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Dolor eligendi voluptatum dolore voluptas iure.
                                 <span class="tiempo">
                                     <i class="far fa-clock"></i>
@@ -47,6 +46,5 @@ function Vacaciones(){
         </div>
     )
 }
-
 
 export default Vacaciones;
