@@ -19,11 +19,12 @@ class Principal extends Component{
       id: '',
       nombre: '',
       apellido: '',
-      edad: '',
+      fechaNacimiento: '',
       Direccion: '',
+      telefono: '',
       correo: '',
       puesto: '',
-      salario: '',
+      fechaEntrada: '',
       tipoModal: ''
     }
   }
@@ -74,11 +75,12 @@ class Principal extends Component{
         id: empleados.id,
         nombre: empleados.nombre,
         apellido: empleados.apellido,
-        edad: empleados.edad,
+        fechaNacimiento: empleados.fechaNacimiento,
         Direccion: empleados.Direccion,
+        telefono: empleados.telefono,
         correo: empleados.correo,
         puesto: empleados.puesto,
-        salario: empleados.salario
+        fechaEntrada: empleados.fechaEntrada
       }
     })
   }
@@ -121,11 +123,12 @@ class Principal extends Component{
                   <th>Id</th>
                   <th>Nombre</th>
                   <th>Apellido</th>
-                  <th>Edad</th>
+                  <th>fechaNacimiento</th>
                   <th>Direccion</th>
+                  <th>Telefono</th>
                   <th>Correo</th>
                   <th>Puesto</th>
-                  <th>Salario $</th>
+                  <th>fechaEntrada</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
@@ -137,11 +140,12 @@ class Principal extends Component{
                         <td>{empleados.id}</td>
                         <td>{empleados.nombre}</td>
                         <td>{empleados.apellido}</td>
-                        <td>{empleados.edad}</td>
+                        <td>{empleados.fechaNacimiento}</td>
                         <td>{empleados.Direccion}</td>
+                        <td>{empleados.telefono}</td>
                         <td>{empleados.correo}</td>
                         <td>{empleados.puesto}</td>
-                        <td>{empleados.salario}</td>
+                        <td>{empleados.fechaEntrada}</td>
                         <td>
                           <button className="btn btn-primary" onClick={()=>{this.seleccionarEmpleado(empleados); this.modalInsertar()}}><FontAwesomeIcon icon={faEdit}/></button>{"    "}
                           <button className="btn btn-danger"  onClick={()=>{this.seleccionarEmpleado(empleados); this.setState({modalEliminar: true})}}><FontAwesomeIcon icon={faTrashAlt}/></button>
@@ -159,34 +163,42 @@ class Principal extends Component{
               </ModalHeader> */}
               <ModalBody>
                 <div className="form-group">
-                  <label htmlFor="id">Id</label>
-                  <input className="form-control" type="text" name="id" id="id" readOnly onChange={this.handleChange} value={form?form.id: this.state.data.length+1}/>
-                  <br />
-                  <label htmlFor="nombre">Nombre</label>
-                  <input className="form-control" type="text" name="nombre" id="nombre" onChange={this.handleChange} value={form?form.nombre: ''}/>
-                  <br />
-                  <label htmlFor="apellido">Apellido</label>
-                  <input className="form-control" type="text" name="apellido" id="apellido" onChange={this.handleChange} value={form?form.apellido: ''}/>
-                  <br />
-                  <label htmlFor="edad">Edad</label>
-                  <input className="form-control" type="text" name="edad" id="edad" onChange={this.handleChange} value={form?form.edad:''}/>
-                  <br />
-                  <label htmlFor="Direccion">Direccion</label>
-                  <input className="form-control" type="text" name="Direccion" id="Direccion" onChange={this.handleChange} value={form?form.Direccion: ''}/>
-                  <br />
-                  <label htmlFor="correo">Correo</label>
-                  <input className="form-control" type="text" name="correo" id="correo" onChange={this.handleChange} value={form?form.correo: ''}/>
-                  <br />
-                  <label htmlFor="puesto">Puesto</label>
-                  <input className="form-control" type="text" name="puesto" id="puesto" onChange={this.handleChange} value={form?form.puesto: ''}/>
-                  <br />
-                  <label htmlFor="salario">Salario</label>
-                  <input className="form-control" type="text" name="salario" id="salario" onChange={this.handleChange} value={form?form.salario: ''}/>
+
+                  <form>
+                    <label htmlFor="id">Id</label>
+                    <input className="form-control" type="text" name="id" id="id" readOnly onChange={this.handleChange} value={form?form.id: this.state.data.length+1}/>
+                    <br />
+                    <label htmlFor="nombre">Nombre</label>
+                    <input className="form-control" type="text" name="nombre" id="nombre" onChange={this.handleChange} value={form?form.nombre: ''}/>
+                    <br />
+                    <label htmlFor="apellido">Apellido</label>
+                    <input className="form-control" type="text" name="apellido" id="apellido" onChange={this.handleChange} value={form?form.apellido: ''}/>
+                    <br />
+                    <label htmlFor="fechaNacimiento">FechaNacimiento</label>
+                    <input className="form-control" type="date" name="fechaNacimiento" id="fechaNacimiento" onChange={this.handleChange} value={form?form.fechaNacimiento:''}/>
+                    <br />
+                    <label htmlFor="Direccion">Direccion</label>
+                    <input className="form-control" type="text" name="Direccion" id="Direccion" onChange={this.handleChange} value={form?form.Direccion: ''}/>
+                    <br />
+                    <br />
+                    <label htmlFor="telefono">Telefono</label>
+                    <input className="form-control" type="tel" name="telefono" id="telefono" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Ejemplo: 849-785-0712" required onChange={this.handleChange} value={form?form.telefono: ''}/>
+                    <br />
+                    <label htmlFor="correo">Correo</label>
+                    <input className="form-control" type="text" name="correo" id="correo" onChange={this.handleChange} value={form?form.correo: ''}/>
+                    <br />
+                    <label htmlFor="puesto">Puesto</label>
+                    <input className="form-control" type="text" name="puesto" id="puesto" onChange={this.handleChange} value={form?form.puesto: ''}/>
+                    <br />
+                    <label htmlFor="fechaEntrada">fechaEntrada</label>
+                    <input className="form-control" type="date" name="fechaEntrada" id="fechaEntrada" onChange={this.handleChange} value={form?form.fechaEntrada: ''}/>
+                  </form>
+                  
                 </div>           
               </ModalBody>
               <ModalFooter>
                 {this.state.tipoModal=='insertar'?
-                  <button className="btn btn-success" onClick={()=>this.peticionPost()}>
+                  <button type="submit" className="btn btn-success" onClick={()=>this.peticionPost()}>
                     Insertar
                   </button>: <button className="btn btn-primary" onClick={()=>this.peticionPut()}>
                     Actualizar
