@@ -7,7 +7,86 @@ import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import swal from 'sweetalert';
 import '../App.css';
 
+import PropTypes from 'prop-types';
+import { IMaskInput } from 'react-imask';
+import NumberFormat from 'react-number-format';
+import Box from '@mui/material/Box';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+
 const url ="https://nomina-empleado-api.azurewebsites.net/api/Employees/";
+
+const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
+  const { onChange, ...other } = props;
+  return (
+      <IMaskInput
+      {...other}
+      mask="(#00) 000-0000"
+      definitions={{
+          '#': /[1-9]/,
+      }}
+      inputRef={ref}
+      onAccept={(value) => onChange({ target: { name: props.name, value } })}
+      overwrite
+      />
+  );
+});
+TextMaskCustom.propTypes = {
+name: PropTypes.string.isRequired,
+onChange: PropTypes.func.isRequired,
+};
+
+const TextMaskCedula = React.forwardRef(function TextMaskCedula(props, ref) {
+  const { onChange, ...other } = props;
+  return (
+      <IMaskInput
+      {...other}
+      mask="#00-0000000-0"
+      definitions={{
+          '#': /[1-9]/,
+      }}
+      inputRef={ref}
+      onAccept={(value) => onChange({ target: { name: props.name, value } })}
+      overwrite
+      />
+  );
+});
+TextMaskCedula.propTypes = {
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(props, ref) {
+  const { onChange, ...other } = props;
+
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={ref}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      thousandSeparator
+      isNumericString
+      prefix="$"
+    />
+  );
+});
+
+NumberFormatCustom.propTypes = {
+name: PropTypes.string.isRequired,
+onChange: PropTypes.func.isRequired,
+};
+
+
+
 
 class Principal extends Component{
 
@@ -25,7 +104,10 @@ class Principal extends Component{
       email: '',
       hireDate: '',
       salary: '',
-      tipoModal: ''
+      tipoModal: '',
+      textmask: '',
+      numberformat: '',
+      cedulamask: ''
     }
   }
 
@@ -87,14 +169,14 @@ class Principal extends Component{
 
 
   handleChange=async e=>{
-    e.persist();
+    //e.persist();
     await this.setState({
       form:{
         ...this.state.form,
         [e.target.name]: e.target.value
       }
     });
-    console.log(this.state.form)
+    //console.log(this.state.form)
   }
 
   componentDidMount(){
@@ -154,7 +236,7 @@ class Principal extends Component{
                     )
                   })
                 }
-            </tbody>
+             </tbody>
             </table>
 
             <Modal isOpen={this.state.modalInsertar}>
@@ -163,36 +245,95 @@ class Principal extends Component{
               </ModalHeader> */}
               <ModalBody>
                 <div className="form-group">
-
-                  <form>
-                    <label htmlFor="id">Id</label>
-                    <input className="form-control" type="text" name="id" id="id" readOnly onChange={this.handleChange} value={form?form.id: this.state.data.length+1}/>
-                    <br />
-                    <label htmlFor="nameEmploye">Nombre</label>
-                    <input className="form-control" type="text" name="nameEmployee" id="nameEmployee" onChange={this.handleChange} value={form?form.nameEmployee: ''}/>
-                    <br />
-                    <label htmlFor="identificationCard">Cedula</label>
-                    <input className="form-control" type="text" name="identificationCard" id="identificationCard" onChange={this.handleChange} value={form?form.identificationCard: ''}/>
-                    <br />
-                    <label htmlFor="dateOfBirth">FechaNacimiento</label>
-                    <input className="form-control" type="date" name="dateOfBirth" id="dateOfBirth" onChange={this.handleChange} value={form?form.dateOfBirth:''}/>
-                    <br />
-                    <label htmlFor="roleEmployee">Puesto</label>
-                    <input className="form-control" type="text" name="roleEmployee" id="roleEmployee" onChange={this.handleChange} value={form?form.roleEmployee: ''}/>
-                    <br />
-                    <br />
-                    <label htmlFor="phoneNumber">Telefono</label>
-                    <input className="form-control" type="tel" name="phoneNumber" id="phoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Ejemplo: 849-785-0712" required onChange={this.handleChange} value={form?form.phoneNumber: ''}/>
-                    <br />
-                    <label htmlFor="email">Email</label>
-                    <input className="form-control" type="email" name="email" id="email" onChange={this.handleChange} value={form?form.email: ''}/>
-                    <br />
-                    <label htmlFor="hireDate">hireDate</label>
-                    <input className="form-control" type="date" name="hireDate" id="hireDate" onChange={this.handleChange} value={form?form.hireDate: ''}/>
-                    <br />
-                    <label htmlFor="salary">salary</label>
-                    <input className="form-control" type="number" name="salary" id="salary" onChange={this.handleChange} value={form?form.salary: ''}/>
-                  </form>
+                  <Box
+                    component="form"
+                    sx={{
+                      '& > :not(style)': { m: 1, width: '25ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                  >
+                    <TextField
+                      name="nameEmployee"
+                      id="nameEmployee" 
+                      type="text" 
+                      label="Nombre"
+                      variant="standard"
+                      onChange={this.handleChange}
+                      value={form?form.nameEmployee: ''}
+                    />
+                    <br/>
+                    <FormControl variant="standard">
+                      <InputLabel htmlFor="formatted-text-mask-input">Cedula</InputLabel>
+                      <Input
+                        onChange={this.handleChange}
+                        value={form?form.identificationCard:''}
+                        name="identificationCard"
+                        id="identificationCard"
+                        inputComponent={TextMaskCedula}
+                      />
+                    </FormControl>
+                    <br/>
+                    <TextField 
+                      name="dateOfBirth" 
+                      id="dateOfBirth" 
+                      label=" " 
+                      variant="standard" 
+                      type="date"
+                      onChange={this.handleChange} 
+                      value={form?form.dateOfBirth:''}/>
+                    <br/>
+                    <TextField 
+                      name="roleEmployee" 
+                      id="roleEmployee" 
+                      label="Puesto" 
+                      variant="standard"
+                      onChange={this.handleChange}
+                      value={form?form.roleEmployee: ''} />
+                    <br/>
+                    <FormControl variant="standard">
+                      <InputLabel htmlFor="formatted-text-mask-input">Telefono</InputLabel>
+                      <Input
+                        value={form?form.phoneNumber:''}
+                        onChange={this.handleChange}
+                        name="phoneNumber"
+                        id="phoneNumber"
+                        inputComponent={TextMaskCustom}
+                      />
+                    </FormControl>
+                    <br/>
+                    <TextField 
+                      name="email" 
+                      id="email" 
+                      label="Email" 
+                      variant="standard" 
+                      type="email"
+                      onChange={this.handleChange} 
+                      value={form?form.email: ''}
+                    />
+                    <br/>
+                    <TextField 
+                      name="hireDate" 
+                      id="hireDate" 
+                      label=" " 
+                      variant="standard" 
+                      type="date"
+                      onChange={this.handleChange}
+                      value={form?form.hireDate: ''}/>
+                    <br/>
+                    <TextField
+                      label="Salario"
+                      value={form?form.salary:''}
+                      onChange={this.handleChange}
+                      name="salary"
+                      id="salary"
+                      InputProps={{
+                        inputComponent: NumberFormatCustom,
+                      }}
+                      variant="standard"
+                    />
+            
+                  </Box>
                   
                 </div>           
               </ModalBody>
@@ -218,8 +359,6 @@ class Principal extends Component{
                 <button className="btn btn-secundary" onClick={()=>this.setState({modalEliminar: false})}>No</button>
               </ModalFooter>
             </Modal>
-
-
 
           </div>
         </div>
