@@ -4,15 +4,15 @@ import Cookies from 'universal-cookie'
 import '../App.css'
 import logo from './img/login.svg'
 
-const baseUrl = "http://localhost:3001/administradores";
+const baseUrl = "https://nomina-empleado-api.azurewebsites.net/api/Admins";
 const cookies = new Cookies();
 
 class Login extends Component {
 
     state={
         form:{
-            username: '',
-            password: ''
+            users: '',
+            pass: ''
         }
     }
 
@@ -27,16 +27,16 @@ class Login extends Component {
     }
 
     iniciarSesion=async()=>{
-        await axios.get(baseUrl, {params: {username: this.state.form.username, password: this.state.form.password}})
+        await axios.get(baseUrl, {params: {users: this.state.form.users, pass: this.state.form.pass}})
         .then(response=>{
             return response.data
         })
         .then(response=>{
             if(response.length>0){
                 var respuesta=response[0];
-                cookies.set('id', respuesta.id, {path: "/"})
-                cookies.set('username', respuesta.username, {path: "/"})
-                cookies.set('password', respuesta.password, {path: "/"})
+                cookies.set('idAdmin', respuesta.id, {path: "/"})
+                cookies.set('users', respuesta.users, {path: "/"})
+                cookies.set('pass', respuesta.pass, {path: "/"})
                 window.location.href="/inicio";
 
             }else{
@@ -56,10 +56,8 @@ class Login extends Component {
                         <h1 className="title">Log in with</h1>
                         <br />
                         <form className="inputs-container">
-                            <input className="input" type="text" placeholder="Username" name="username" onChange={this.handleChange}/>
-                            <input className="input" type="password" placeholder="Password" name="password" onChange={this.handleChange}/>
-                            <input type="tel" name="telField" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required/>
-                            {/* <input type="datetime-local" name="dtlPicker"/> */}
+                            <input className="input" type="text" placeholder="Username" name="users" onChange={this.handleChange}/>
+                            <input className="input" type="password" placeholder="Password" name="pass" onChange={this.handleChange}/>
                             <button className="btnl" onClick={()=> this.iniciarSesion()}>login</button>
                         </form>
                     </div>

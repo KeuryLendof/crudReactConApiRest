@@ -7,9 +7,7 @@ import Inicio from "./Componentes/Inicio";
 import InicioEmpleados from "./Componentes/InicioEmpleados";
 import Nomina from "./Componentes/Nomina";
 import SolicitarVacaciones from "./Componentes/SolicitarVacaciones";
-import Inputs from "./Componentes/inputs";
-import verNominas from "./Componentes/verNominas";
-
+import NominasEmpleados from "./Componentes/NominasEmpleados";
 
 function App(){
 
@@ -23,8 +21,7 @@ function App(){
       <Route path="/Principal" exact element={<Principal />}/>
       <Route path="/nomina" exact element={<Nomina />}/>
       <Route path="/solicitarVacaciones" exact element={<SolicitarVacaciones />}/>
-      <Route path="/inputs" exact element={<Inputs />}/>
-      <Route path="/verNominas" exact element={<verNominas/>}/>
+      <Route path="/nominasEmpleados" exact element={<NominasEmpleados/>}/>
 
     </Routes>
 

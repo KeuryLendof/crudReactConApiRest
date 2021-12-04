@@ -34,7 +34,7 @@ const Inicio=()=>{
                     <img src={Img3}/>
                     <h4>Nominas</h4>
                     <p>Modulo de nominas para ver todas las nominas de todos los empleados</p>
-                    <a href="/vacaciones">Ver</a>
+                    <a href="/nominasEmpleados">Ver</a>
                 </div>
                 
             
