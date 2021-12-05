@@ -3,6 +3,7 @@ import '../App.css';
 import Img from './img/recursos-humanos.png';
 import Img2 from './img/calendario.png';
 import Img3 from './img/factura.png';
+import Img4 from './img/historial.png'
 
 
 const Inicio=()=>{
@@ -35,6 +36,13 @@ const Inicio=()=>{
                     <h4>Nominas</h4>
                     <p>Modulo de nominas para ver todas las nominas de todos los empleados</p>
                     <a href="/nominasEmpleados">Ver</a>
+                </div>
+
+                <div className="card">
+                    <img src={Img4}/>
+                    <h4>Historial De Empleados</h4>
+                    <p>Modulo de todos los empleados que han pasado por la empresa</p>
+                    <a href="/jobHistories">Ver</a>
                 </div>
                 
             

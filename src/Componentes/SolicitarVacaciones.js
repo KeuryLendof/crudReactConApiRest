@@ -4,9 +4,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 import axios from "axios";
+import swal from 'sweetalert';
 import logo from './img/calendar.svg'
 
-const url ="http://localhost:3001/vacaciones";
+const url ="https://nomina-empleado-api.azurewebsites.net/api/Vacations/";
 
 
 class SolicitarVacaciones extends Component{
@@ -14,16 +15,16 @@ class SolicitarVacaciones extends Component{
     state={
         data:[],
         form:{
-            id: '',
-            nombre: '',
-            fechaInicio: '',
-            fechaFin: ''
+            idVacations: '',
+            identificationCard: '',
+            fromVacations: '',
+            toVacations: ''
         }
     }
 
     peticionPost=async()=>{
         await axios.post(url,this.state.form).then(response=>{
-
+            swal("Good job!", "Empleado agregado correctamente!", "success");
         })
     }
 
@@ -54,11 +55,11 @@ class SolicitarVacaciones extends Component{
                         <br/>
                         <h1 className="titlev">Solicitar Vacaciones</h1>
                         <br />
-                        <input className="input" type="text" placeholder="Estrella Adames" name="nombre" id="nombre" onChange={this.handleChange} value={form.nombre}/>
+                        <input className="input" type="text" placeholder="Estrella Adames" name="identificationCard" id="identificationCard" onChange={this.handleChange} value={form.identificationCard}/>
                         <form className="inputs-container">
-                            <input name="fechaInicio" id="fechaInicio" type="date" className="input" placeholderText="Start Date" onChange={this.handleChange} value={form.fechaInicio}/>
-                            <input name="fechaFin" id="fechaFin" type="date"  className="input" placeholderText="End Date" onChange={this.handleChange} value={form.fechaFin}/>
-                            <button type="button" className="btnv" onClick={()=>this.peticionPost()}>Solicitar</button>
+                            <input name="fromVacations" id="fromVacations" type="date" className="input" placeholderText="Start Date" onChange={this.handleChange} value={form.fromVacations}/>
+                            <input name="toVacations" id="toVacations" type="date"  className="input" placeholderText="End Date" onChange={this.handleChange} value={form.toVacations}/>
+                            <button className="btnv" onClick={()=>this.peticionPost()}>Solicitar</button>
                         </form>
                     </div>
                     <img className="calendar-image-container" src={logo}/>
