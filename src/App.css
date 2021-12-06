@@ -218,7 +218,7 @@ header{
   text-align: center;
   font-size: 40px;
   color: #6a6a6a;
-  margin-top: 50px;
+  margin-top: 15px;
   font-weight: 100;
   font-family: 'Roboto', sans-serif;
 }
@@ -696,4 +696,29 @@ header{
   .seccion-usuarios {
       width: 280px;
   }
+}
+
+
+
+.Calendario{
+  text-align: center;
+  background-color: white;
+  padding: 3.5rem;
+  border-radius: 15px;
+}
+
+.btnc{
+  width: 25%;
+  height: 3.125rem;
+  font-size: 1em;
+}
+.inputc{
+  width: 20%;
+  height: 45px;
+  padding-left: 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-sizing: border-box;
 }

@@ -24,6 +24,7 @@ class JobHistories extends Component{
     render(){
         return(
             <div className="App container">
+                <h1 className="titulo">Historial de todos los empleados</h1><br/>
                 <div className="table-responsive">
                     <table>
                         <thead>

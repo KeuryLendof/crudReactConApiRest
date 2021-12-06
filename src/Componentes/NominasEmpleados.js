@@ -29,7 +29,8 @@ class NominasEmpleados extends Component{
 
         return(
             <div className="App container">
-                <br/><br/>
+                <h1 className="titulo">Nomina de todos los empleados</h1><br/>
+                <br/>
                 <div className="table-responsive">
                     <table>
                         <thead>

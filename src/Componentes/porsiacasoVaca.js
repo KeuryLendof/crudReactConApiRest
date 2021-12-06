@@ -7,9 +7,7 @@ import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../App.css";
-import logo from './img/calendar.svg'
+
 
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
@@ -23,27 +21,27 @@ const localizer = dateFnsLocalizer({
 });
 
 const events = [
+    // {
+    //     title: "Big Meeting",
+    //     allDay: true,
+    //     start: new Date(2021, 11, 0),
+    //     end: new Date(2021, 11, 0),
+    // },
     {
-        title: "Marlon",
-        allDay: true,
-        start: new Date(2021, 10, 1),
-        end: new Date(2021, 10, 6),
+        title: "321-4345123-3",
+        start: new Date(2021, 11, 7),
+        end: new Date(2021, 11, 10),
     },
-    {
-        title: "keury",
-        start: new Date(2021, 10, 7),
-        end: new Date(2021, 10, 10),
-    },
-    {
-        title: "Conference",
-        start: new Date(2021, 6, 20),
-        end: new Date(2021, 6, 23),
-    }
+    // {
+    //     title: "Conference",
+    //     start: new Date(2021, 11, 20),
+    //     end: new Date(2021, 11, 23),
+    // },
 ];
 
 
 
-function Vaca() {
+function PorsiacasoVaca() {
     const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
     const [allEvents, setAllEvents] = useState(events);
 
@@ -52,37 +50,25 @@ function Vaca() {
     }
 
     return (
-        <div className="App">
-            {/* <header>
-                <h1>Calendario</h1>
-            </header> */}
-
-            <div className="calendar-container">
-                <div className="calendar-info-container">
-                    <br/>
-                    <h1 className="titlev">Asignar Vacaciones</h1>
-                    <br />
-                    <select className="input" value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}>
-                        <option selected>Seleccione Persona</option>
-                        <option value="Marlon">Marlon</option>
-                        <option value="Keury">Keury</option>
-                        <option value="Estrella">Estrella</option>
-                        <option value="Abel">Abel</option>
-                    </select>
-                    <form className="inputs-container">
-                        <DatePicker className="input" placeholderText="Start Date" selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })}/>
-                        <DatePicker className="input" placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })}/>
-                        <button type="button" className="btnv" onClick={handleAddEvent}>Asignar</button>
-                    </form>
+        <div className="Calendario">
+            
+                <h1 className="seccion-titulo">Aprobar Vacaciones</h1>
+                <div className="calendariopack">
+                    <input className="inputc" type="text" placeholder="Cedula" value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
+                    <DatePicker className="inputc" placeholderText="Dia Inicio" selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
+                    <DatePicker className="inputc" placeholderText="Dia Fin" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
+                    <button className="btnc" onClick={handleAddEvent}>
+                        Aprobar
+                    </button>
                 </div>
-                <img className="calendar-image-container" src={logo}/>
-            </div>
-            <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} />
+                <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} />
+            
+            
         </div>
     );
 }
 
-export default Vaca;
+export default PorsiacasoVaca;
 
 
 

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import PorsiacasoVaca from "./PorsiacasoVaca";
 import '../App.css';
 
 const url ="https://nomina-empleado-api.azurewebsites.net/api/Vacations";
@@ -66,7 +67,10 @@ class Vacaciones extends Component{
                         )
                     })}
                 </section>
+                <br/>
+                <PorsiacasoVaca />
             </div>
+
         )
     }
 

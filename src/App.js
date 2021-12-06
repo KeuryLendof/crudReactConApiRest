@@ -9,6 +9,7 @@ import Nomina from "./Componentes/Nomina";
 import SolicitarVacaciones from "./Componentes/SolicitarVacaciones";
 import NominasEmpleados from "./Componentes/NominasEmpleados";
 import JobHistories from "./Componentes/JobHistories";
+import PorsiacasoVaca from "./Componentes/PorsiacasoVaca";
 
 function App(){
 
@@ -24,6 +25,7 @@ function App(){
       <Route path="/solicitarVacaciones" exact element={<SolicitarVacaciones />}/>
       <Route path="/nominasEmpleados" exact element={<NominasEmpleados/>}/>
       <Route path="/jobHistories" exact element={<JobHistories/>}/>
+      <Route path="/prueba" exact element={<PorsiacasoVaca/>}/>
 
     </Routes>
 
