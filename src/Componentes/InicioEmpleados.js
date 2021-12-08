@@ -2,6 +2,7 @@ import React from "react";
 import '../App.css';
 import Img from './img/solicitud.png';
 import Img2 from './img/nomina.png';
+import Img3 from './img/login.png'
 
 
 
@@ -27,6 +28,13 @@ const InicioEmpleados=()=>{
                     <h4>Ver mi nomina</h4>
                     <p>Modulo de nomina para ver su salario primario y neto</p>
                     <a href="/nomina">Ver</a>
+                </div>
+
+                <div className="card">
+                    <img src={Img3}/>
+                    <h4>Login</h4>
+                    <p>Modulo de login para los administradores</p>
+                    <a href="/login">Login</a>
                 </div>
             
             </div>

@@ -1,46 +1,66 @@
 import React, {Component} from "react";
-import axios from 'axios'
 import '../App.css'
+import swal from 'sweetalert';
 import logo from './img/login.svg'
 
-const baseUrl = "https://nomina-empleado-api.azurewebsites.net/api/Admins/";
+//const baseUrl = "https://nomina-empleado-api.azurewebsites.net/api/Admins";
 
 class Login extends Component {
 
-    state={
-        form:{
-            users: "",
-            pass: ""
-        },
-        error:false,
-        errorMsg:"Error de prueba"
+    constructor(props){
+        super(props)
+        this.state = {
+            data:[],
+            resultado:[],
+            form:{
+                users: '',
+                pass: ''
+            }
+        }
+    }
+
+    LaApi=async()=>{
+        let user = `${this.state.form.users}`
+        let pas = `${this.state.form.pass}`
+
+        let res = await fetch('https://nomina-empleado-api.azurewebsites.net/api/Admins')
+        this.state.data = await res.json()
+
+        if(this.state.data.find(users => users.users === user)){
+            if(this.state.data.find(pass => pass.pass === pas)){
+                //alert(`Bien hecho ${user}`)
+                window.location.href="./inicio";
+            }else{
+                swal ( "Oops" ,  "Usuario o contraseña incorrectos!" ,  "error" )
+            }
+        }else{
+            swal ( "Oops" ,  "Usuario o contraseña incorrectos!" ,  "error" )
+        }
+
+        //console.log(this.state.data)
     }
 
     manejadorSubmit = e =>{
         e.preventDefault();
+        var usuario = this.state.form.users
+        var contrasena = this.state.form.pass
+        this.LaApi()
     }
 
-    manejadorChange = async e =>{
+    handleChange=async e=>{
+        //e.persist();
         await this.setState({
-            form:{
-                ...this.state.form,
-                [e.target.name]: e.target.value
-            }
-        })
-    }
+          form:{
+            ...this.state.form,
+            [e.target.name]: e.target.value
+          }
+        });
+        console.log(this.state.form)
+      }
 
-    manejadorBoton=async()=>{
-        await axios.get(baseUrl,{params: {users: this.state.form.users, pass: this.state.form.pass}})
-        .then( response=>{
-            return response.data
-        })
-        .then(response=>{
-            if(response.length>0){
-                window.location.href="/inicio";
-            }
-        })
+    async componentDidMount(){
+        //await this.LaApi()
     }
-
 
     render(){
 
@@ -54,15 +74,10 @@ class Login extends Component {
                             <h1 className="title">Log in with</h1>
                             <br />
                             <form className="inputs-container" onSubmit={this.manejadorSubmit}>
-                                <input className="input" type="text" placeholder="Username" name="users" onChange={this.manejadorChange}/>
-                                <input className="input" type="password" placeholder="Password" name="pass" onChange={this.manejadorChange}/>
-                                <button className="btnl" type="submit" onClick={this.manejadorBoton}>login</button>
+                                <input className="input" type="text" placeholder="Username" id="users" name="users" onChange={this.handleChange}/>
+                                <input className="input" type="password" placeholder="Password" id="pass" name="pass" onChange={this.handleChange}/>
+                                <button className="btnl" type="submit">login</button>
                             </form>
-                            {this.state.error === true &&
-                                <div className="alert alert-danger" role="alert">
-                                    {this.state.errorMsg}
-                                </div>
-                            }
                         </div>
                         <img className="image-container" src={logo}/>
                     </div>

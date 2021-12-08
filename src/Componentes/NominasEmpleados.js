@@ -36,8 +36,10 @@ class NominasEmpleados extends Component{
                         <thead>
                             <tr>
                             <th>Id</th>
-                            <th>Empleado Id</th>
+                            <th>Cedula</th>
+                            <th>Nombre</th>
                             <th>Dia de la nomina</th>
+                            <th>Salario Bruto</th>
                             <th>AFP</th>
                             <th>Secure</th>
                             <th>Salario Neto</th>
@@ -48,8 +50,10 @@ class NominasEmpleados extends Component{
                                 return(
                                 <tr>
                                     <td>{nominas.id}</td>
-                                    <td>{nominas.idEmployee}</td>
+                                    <td>{nominas.identificationCard}</td>
+                                    <td>{nominas.nameEmployee}</td>
                                     <td>{nominas.datePayroll}</td>
+                                    <td>{nominas.grossIncome}</td>
                                     <td>{nominas.afp}</td>
                                     <td>{nominas.secure}</td>
                                     <td>{nominas.netIncome}</td>

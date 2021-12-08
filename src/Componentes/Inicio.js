@@ -4,6 +4,7 @@ import Img from './img/recursos-humanos.png';
 import Img2 from './img/calendario.png';
 import Img3 from './img/factura.png';
 import Img4 from './img/historial.png'
+import Img5 from './img/cerrar.png'
 
 
 const Inicio=()=>{
@@ -13,6 +14,9 @@ const Inicio=()=>{
             
         <div className="iniciomax">
 
+            <div className="Cerrar">
+                <a href="/" className="boton-redes"> <img src={Img5}/></a>
+            </div>
             <h1 className="titulo">Administracion de empleados</h1><br/>
 
             <div className="inicio">

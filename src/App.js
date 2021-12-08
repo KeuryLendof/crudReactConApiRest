@@ -16,9 +16,9 @@ function App(){
   return(
 
     <Routes>
-      <Route path="/" exact element={<Login/>}/>
+      <Route path="/" exact element={<InicioEmpleados/>}/>
       <Route path="/inicio" exact element={<Inicio />}/>
-      <Route path="/inicioEmpleados" exact element={<InicioEmpleados />}/>
+      <Route path="/login" exact element={<Login />}/>
       <Route path="/vacaciones" exact element={<Vacaciones />}/>
       <Route path="/Principal" exact element={<Principal />}/>
       <Route path="/nomina" exact element={<Nomina />}/>

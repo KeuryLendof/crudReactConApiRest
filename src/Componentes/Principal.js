@@ -121,7 +121,7 @@ class Principal extends Component{
   } 
 
   peticionPost=async()=>{
-    delete this.state.form.id;
+    //delete this.state.form.id;
     swal("Good job!", "Empleado agregado correctamente!", "success");
     await axios.post(url, this.state.form).then(response=>{
       this.modalInsertar();
@@ -176,7 +176,7 @@ class Principal extends Component{
         [e.target.name]: e.target.value
       }
     });
-    //console.log(this.state.form)
+    console.log(this.state.form)
   }
 
   componentDidMount(){

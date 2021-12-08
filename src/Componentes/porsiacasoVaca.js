@@ -7,6 +7,8 @@ import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 
 const locales = {
@@ -50,20 +52,17 @@ function PorsiacasoVaca() {
     }
 
     return (
-        <div className="Calendario">
-            
+        <div className="container Calendario">
                 <h1 className="seccion-titulo">Aprobar Vacaciones</h1>
                 <div className="calendariopack">
                     <input className="inputc" type="text" placeholder="Cedula" value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
                     <DatePicker className="inputc" placeholderText="Dia Inicio" selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
-                    <DatePicker className="inputc" placeholderText="Dia Fin" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
-                    <button className="btnc" onClick={handleAddEvent}>
+                    <DatePicker maxDate="15" minDate="5" className="inputc" placeholderText="Dia Fin" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
+                    <button className="btn btn-primary" onClick={handleAddEvent}>
                         Aprobar
                     </button>
                 </div>
                 <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} />
-            
-            
         </div>
     );
 }

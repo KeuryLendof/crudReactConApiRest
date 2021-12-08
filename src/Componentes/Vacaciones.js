@@ -1,15 +1,24 @@
 import React, { Component } from "react";
 import axios from "axios";
 import PorsiacasoVaca from "./PorsiacasoVaca";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import '../App.css';
+import Img from './img/usuario.png'
 
-const url ="https://nomina-empleado-api.azurewebsites.net/api/Vacations";
+const url ="https://nomina-empleado-api.azurewebsites.net/api/Vacations/";
 
 
 class Vacaciones extends Component{
 
     state={
-        data:[]
+        data:[],
+        modalEliminar: false,
+        form:{
+            idVacations: '',
+            identificationCard: '',
+            fromVacations: '',
+            toVacations: ''
+        }
     }
 
     peticionGet=()=>{
@@ -17,6 +26,23 @@ class Vacaciones extends Component{
             this.setState({data: response.data});
         })
     }
+
+    peticionDelete=()=>{
+        axios.delete(url+this.state.form.idVacations).then(response=>{
+          this.peticionGet();
+        })
+    }
+
+    seleccionarVacaciones=(vacaciones)=>{
+        this.setState({
+          form: {
+            idVacations: vacaciones.idVacations,
+            identificationCard: vacaciones.identificationCard,
+            fromVacations: vacaciones.fromVacations,
+            toVacations: vacaciones.toVacations
+          }
+        })
+      }
 
     componentDidMount(){
         this.peticionGet();
@@ -37,7 +63,7 @@ class Vacaciones extends Component{
                             <div class="panel-chat">
                                 <div class="mensaje">
                                     <div class="avatar">
-                                        {/* <img src="ruta_img" alt="img"/> */}
+                                        <img src={Img}/>
                                     </div>
                                     <div class="cuerpo">
                                         <div class="texto">
@@ -49,18 +75,13 @@ class Vacaciones extends Component{
                                                 Reciente
                                             </span>
                                         </div>
-                                        {/* <ul class="opciones-msj">
+                                        <ul class="opciones-msj">
                                             <li>
-                                                <button type="button">
+                                                <button onClick={()=>{this.seleccionarVacaciones(vacaciones); this.setState({modalEliminar: true})}}>
                                                     <i class="fas fa-times"></i>
                                                 </button>
                                             </li>
-                                            <li>
-                                                <button type="button">
-                                                    <i class="fas fa-share-square"></i>
-                                                </button>
-                                            </li>
-                                        </ul> */}
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -69,6 +90,15 @@ class Vacaciones extends Component{
                 </section>
                 <br/>
                 <PorsiacasoVaca />
+                <Modal isOpen={this.state.modalEliminar}>
+                    <ModalBody>
+                        Estas seguro de que quieres eliminar
+                    </ModalBody>
+                    <ModalFooter>
+                        <button className="btn btn-danger" onClick={()=>this.peticionDelete()}>Si</button>
+                        <button className="btn btn-secundary" onClick={()=>this.setState({modalEliminar: false})}>No</button>
+                    </ModalFooter>
+                </Modal>
             </div>
 
         )
