@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import '../App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { jsPDF } from "jspdf";
+import autoTable from 'jspdf-autotable'
 import Img from './img/pdf.png';
 import Img2 from './img/perfil.png';
 
@@ -60,6 +62,12 @@ class Nomina extends Component{
         })
     }
 
+    generarPdf(){
+        const doc = new jsPDF();
+        doc.text(85, 10, 'Esta es mi nomina')
+        autoTable(doc, { html: '#myNomina' })
+        doc.save('myNomina.pdf')
+    }
 
 
     render(){
@@ -94,7 +102,7 @@ class Nomina extends Component{
                         <div id="pdf" className="perfil-usuario-footer">
                             <h3 className="titulo"> Esta es su nomina</h3>
                             <div id="estoyaqui" className="table-responsive" style={{display:"none"}}>
-                            <table>
+                            <table id="myNomina">
                                 <thead>
                                     <tr>
                                     <th>Id</th>
@@ -123,7 +131,7 @@ class Nomina extends Component{
                             </div>
                         </div>
                         <div className="redes-sociales">
-                            <a className="boton-redes"> <img src={Img}/></a>
+                            <a onClick={this.generarPdf} className="boton-redes"> <img src={Img}/></a>
                         </div>
                     </div>
                     <br></br>
