@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 import axios from "axios";
 import swal from 'sweetalert';
+import moment from 'moment'
 import logo from './img/calendar.svg';
 
 
@@ -14,20 +15,42 @@ class SolicitarVacaciones extends Component{
 
     state={
         data:[],
+        resultado:[],
         form:{
             identificationCard: '',
             fromVacations: '',
-            toVacations: ''
+            toVacations: '',
+            hireDate: ''
         }
     }
 
     LaApi=async()=>{
         let cedula = `${this.state.form.identificationCard}`
+        let fechaInicio = moment(this.state.form.fromVacations)
+        let fechaFin = moment(this.state.form.toVacations)
+        let dias = fechaFin.diff(fechaInicio, 'days')
+
         let res = await fetch('https://nomina-empleado-api.azurewebsites.net/api/Employees')
         this.state.data = await res.json()
+        this.state.resultado = this.state.data.find(identificationCard => identificationCard.identificationCard === cedula)
+
+        let ano = moment(this.state.resultado.hireDate)
+        let date = new Date();
+        let anoA = date.toISOString().split('T')[0];
+        let actual = moment(anoA)
+        let diasPasados = actual.diff(ano, 'days')
+
 
         if(this.state.data.find(identificationCard => identificationCard.identificationCard === cedula)){
-            this.peticionPost()
+            if(dias > 14){
+                swal ( "Oops" ,  "No puede pedir mas de 15 dias de vacaciones, intente nuevamente!" ,  "error" )
+            }else{
+                if(diasPasados > 365){
+                    this.peticionPost()
+                }else{
+                    swal ( "Oops" ,  "Usted no tiene mas de un ano en la empresa!" ,  "error" )
+                }
+            }
         }else{
             swal ( "Oops" ,  "Esta cedula no existe!" ,  "error" )
         }
@@ -38,6 +61,8 @@ class SolicitarVacaciones extends Component{
     manejadorSubmit = e =>{
         e.preventDefault();
         var usuario = this.state.form.identificationCard
+        var inicio = this.state.form.fromVacations
+        var fin = this.state.form.toVacations
         this.LaApi()
     }
 
@@ -74,8 +99,8 @@ class SolicitarVacaciones extends Component{
                         <br />
                         <form className="inputs-container" onSubmit={this.manejadorSubmit}>
                             <input placeholder="Cedula" type="text" className="input" name="identificationCard" onChange={this.handleChange} value={form.identificationCard}/>
-                            <input type="date" name="fromVacations" className="input" onChange={this.handleChange} value={form.fromVacations}/>
-                            <input type="date" name="toVacations" className="input" onChange={this.handleChange} value={form.toVacations}/>
+                            <input type="date" name="fromVacations" className="input" name="fromVacations" onChange={this.handleChange} value={form.fromVacations}/>
+                            <input type="date" name="toVacations" className="input" name="toVacations" onChange={this.handleChange} value={form.toVacations}/>
                             <button type="submit" className="btnv">Solicitar</button>
                         </form>
                     </div>
@@ -84,10 +109,9 @@ class SolicitarVacaciones extends Component{
             </div>
         )
     }
-
-
     
 }
+<script src="http://momentjs.com/downloads/moment.min.js"></script>
 
 
 

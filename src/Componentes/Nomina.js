@@ -52,8 +52,8 @@ class Nomina extends Component{
         var jeje = this.state.cedula
         console.log(jeje)
         this.LaApi()
-        setTimeout(this.mostrar, 3000)
-        setTimeout(this.limpiar, 4000)
+        setTimeout(this.mostrar, 2000)
+        setTimeout(this.limpiar, 2500)
     }
 
     handleCedula = event =>{
@@ -66,7 +66,7 @@ class Nomina extends Component{
         const doc = new jsPDF();
         doc.text(85, 10, 'Esta es mi nomina')
         autoTable(doc, { html: '#myNomina' })
-        doc.save('myNomina.pdf')
+        doc.save('Nomina.pdf')
     }
 
 
